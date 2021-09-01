@@ -13,6 +13,7 @@ import java.net.URL;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import javazoom.jl.player.advanced.AdvancedPlayer;
@@ -70,12 +71,13 @@ class Song {
 	}
 
 	public void play() {
-		loadFile();
-		if (songStream != null) {
-			loadPlayer();
-			startSong();
-		} else
-			System.err.println("Unable to load file: " + songAddress);
+		JOptionPane.showMessageDialog(null, songAddress);
+//		loadFile();
+//		if (songStream != null) {
+//			loadPlayer();
+//			startSong();
+//		} else
+//			System.err.println("Unable to load file: " + songAddress);
 	}
 
 	public void setDuration(int seconds) {
