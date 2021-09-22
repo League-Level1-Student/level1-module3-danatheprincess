@@ -1,22 +1,8 @@
 package _03_jars._3_magic_box;
-/*
  *    Copyright (c) The League of Amazing Programmers 2013-2019
- *    Level 1
- */
 
 
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 public class MagicBox extends JPanel implements Runnable, MouseListener {
 
@@ -32,13 +18,13 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	 * 3. Choose 3 different locations on the background image.You can either use the mouse position, 
 	 *    or the color of the image, then decide what action the Media Palace should take in each case. 
 	 *     backgroundImage.getRGB(e.getX(), e.getY()) will give you the color of the current pixel.
-	 *     
+	 *   
 	 *   
 	 *     
 	 */
-
+	
 	BufferedImage backgroundImage;
-
+MediaPalace loader=new MediaPalace();
 
 	@Override
 	public void run() {
@@ -57,6 +43,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		frame.addMouseListener(this);
 	}
 
 	private void loadBackgroundImage() throws Exception {
@@ -66,6 +53,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		} catch (IOException e) {
 			throw new Exception("Could not load image: " + imageFile);
 		}
+		
 	}
 
 	@Override
@@ -76,7 +64,31 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		JLabel label=new JLabel("hello!");
+		JFrame fame=new JFrame();
+		fame.setVisible(true);
+		fame.add(label);
+		System.out.println("x="+e.getX()+ " y="+e.getY());
+		if(e.getX()>190&&e.getX()<200&&e.getY()>550&&e.getY()<560) {
+			System.out.println("found the guy");
+			try {
+				label=loader.loadImageFromTheInternet("https://images.unsplash.com/photo-1518568740560-333139a27e72?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZGFyayUyMGhlYXJ0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80");
+			fame.add(label);
+			
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}fame.pack();
+		if(e.getX()>180&&e.getX()<190&&e.getY()>870&&e.getY()<885) {
+			System.out.println("found girl");
+			try {
+				loader.loadImageFromTheInternet("https://analyticsindiamag.com/wp-content/uploads/2020/10/7d744a684fe03ebc7e8de545f97739dd.jpg");
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 	}
 
 	@Override
@@ -104,5 +116,8 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	}
 
 }
+
+
+
 
 
