@@ -1,8 +1,20 @@
 package _03_jars._3_magic_box;
- *    Copyright (c) The League of Amazing Programmers 2013-2019
+  //  Copyright (c) The League of Amazing Programmers 2013-2019
 
 
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class MagicBox extends JPanel implements Runnable, MouseListener {
 
@@ -64,10 +76,10 @@ MediaPalace loader=new MediaPalace();
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		JLabel label=new JLabel("hello!");
+		JLabel label=new JLabel();
 		JFrame fame=new JFrame();
 		fame.setVisible(true);
-		fame.add(label);
+		fame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		System.out.println("x="+e.getX()+ " y="+e.getY());
 		if(e.getX()>190&&e.getX()<200&&e.getY()>550&&e.getY()<560) {
 			System.out.println("found the guy");
@@ -83,7 +95,9 @@ MediaPalace loader=new MediaPalace();
 		if(e.getX()>180&&e.getX()<190&&e.getY()>870&&e.getY()<885) {
 			System.out.println("found girl");
 			try {
-				loader.loadImageFromTheInternet("https://analyticsindiamag.com/wp-content/uploads/2020/10/7d744a684fe03ebc7e8de545f97739dd.jpg");
+				label=loader.loadImageFromTheInternet("https://analyticsindiamag.com/wp-content/uploads/2020/10/7d744a684fe03ebc7e8de545f97739dd.jpg");
+		fame.add(label);
+		fame.pack();
 			} catch (MalformedURLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
